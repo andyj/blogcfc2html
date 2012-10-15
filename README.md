@@ -19,5 +19,4 @@ You're then setup and can run
 $ node createhtml.js
 ```
 
-
 If you need to edit the outputted HTML this can be done in the createHTMLContent() function
