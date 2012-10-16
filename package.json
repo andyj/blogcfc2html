@@ -1,7 +1,7 @@
 {
   "name": "blogcfc2html",
   "preferGlobal": "true",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Andy Jarrett<mail@andyjarrett.co.uk>",
   "description": "A simple synchronous process to export BlogCFC entries to HTML files",
   "repository": {
