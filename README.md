@@ -20,3 +20,6 @@ $ node createhtml.js
 ```
 
 If you need to edit the outputted HTML this can be done in the createHTMLContent() function
+
+# Issues
+Report them at https://github.com/andyj/blogcfc2html/issues
