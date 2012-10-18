@@ -1,4 +1,4 @@
-//
+// BlogCFC2Html
 // EDIT config.js first!
 //
 var mysql = require('mysql');
