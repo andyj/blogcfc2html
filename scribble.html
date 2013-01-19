@@ -1,0 +1,44 @@
+JS validation saying Bad escapement of EOL
+
+<p>In my blogcfc2html project I had a multiline sting literal for the SELECT statement which looked (and ran fine).</p>
+
+<code>
+config.sql = "\
+	SELECT \
+		REPLACE(REPLACE(REPLACE(title,'\,',''),'''',''),':','-') AS title ,\
+		CONCAT_WS('<br>', body,morebody) AS fullbody ,\
+		alias ,\
+		lower(CONCAT_WS('-', TRIM(LEADING '0' FROM date_format(posted, '%Y')),\
+		TRIM(LEADING '0' FROM date_format(posted, '%c')),\
+		TRIM(LEADING '0' FROM date_format(posted, '%d')),alias)) AS htmlFileName,\
+		views,\
+		posted\
+	FROM tblblogentries\
+	ORDER BY posted ASC";
+</code>
+
+<p>What was annoying though is that the JS Validation was coming back and saying</p>
+
+<blockquote>Bad escapement of EOL. Use option multistr if needed</blockquote>
+
+
+<p>This tells you two things. 1) using '\' for the End Of Line is bad. 2) You can get around this and can clear the message by adding the following comment to your .js page</p>
+<code>/*jshint multistr: true */</code>
+
+<p>When its bad and you've got to put a hack in to your code to remove the errors its means you're doing something you shouldn't. In my case I should of been using concatenation instead. This is the correct way, it reduces chances of errors, and is also a part of the ECMAScript. The final string should now look like this:</p>
+
+<code>
+config.sql =
+		"SELECT" +
+		"REPLACE(REPLACE(REPLACE(title,'\,',''),'''',''),':','-') AS title ," +
+		"CONCAT_WS('<br>', body,morebody) AS fullbody ," +
+		"alias ," +
+		"lower(CONCAT_WS('-', TRIM(LEADING '0' FROM date_format(posted, '%Y'))," +
+		"TRIM(LEADING '0' FROM date_format(posted, '%c'))," +
+		"TRIM(LEADING '0' FROM date_format(posted, '%d')),alias)) AS htmlFileName," +
+		"views," +
+		"posted " +
+		"FROM tblblogentries" +
+		"ORDER BY posted ASC";
+</code>
+
